@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="47741db1-c74a-4908-bb5b-c3c805d7f177" name="Default Changelist" comment="" />
+    <list default="true" id="47741db1-c74a-4908-bb5b-c3c805d7f177" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Snake.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +26,7 @@
         <counts>
           <entry key="css" value="1" />
           <entry key="html" value="2" />
+          <entry key="js" value="1" />
           <entry key="php" value="2" />
         </counts>
       </usages-collector>
@@ -31,6 +34,7 @@
         <counts>
           <entry key="CSS" value="1" />
           <entry key="HTML" value="2" />
+          <entry key="JavaScript" value="1" />
           <entry key="PHP" value="2" />
         </counts>
       </usages-collector>
@@ -57,7 +61,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AgileSystemUtveckling.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="115">
@@ -71,6 +75,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Snake.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -78,6 +87,7 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -92,6 +102,7 @@
         <option value="$PROJECT_DIR$/AgileSystemUtvackling.html" />
         <option value="$PROJECT_DIR$/Stylesheet.css" />
         <option value="$PROJECT_DIR$/AgileSystemUtveckling.html" />
+        <option value="$PROJECT_DIR$/Snake.js" />
       </list>
     </option>
   </component>
@@ -159,15 +170,16 @@
       <workItem from="1544639420147" duration="261000" />
       <workItem from="1544639779864" duration="680000" />
       <workItem from="1551439385482" duration="599000" />
-      <workItem from="1551946936136" duration="848000" />
+      <workItem from="1551946936136" duration="1480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2667000" />
+    <option name="totallyTimeSpent" value="3299000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16216215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -230,6 +242,9 @@
           <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Snake.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
