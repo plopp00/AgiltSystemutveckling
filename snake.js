@@ -39,8 +39,12 @@ let food = {
   y : Math.floor(Math.random()*15+3) * box
 }
 
+
 // create the score var
 let score = 0;
+
+// Score and HighScore
+let highScore = localStorage.getItem("highScore");
 
 // control the snake
 let d;
@@ -102,6 +106,14 @@ function draw(){
   // if the snake eats the food
   if (snakeX == food.x && snakeY == food.y){
     score++;
+    if(highScore !== null){
+      if (score > highScore){
+        localStorage.setItem("highScore", score);
+      }
+    }
+    else{
+      localStorage.setItem("highScore", score);
+    }
     eat.play();
     food = {
       x : Math.floor(Math.random()*17+1) * box,
@@ -123,6 +135,12 @@ function draw(){
   if(snakeX < box || snakeX > 17 * box || snakeY < 3*box || snakeY > 17*box || collision(newHead, snake)){
     clearInterval(game);
     dead.play();
+    document.getElementById('restart').innerHTML = '<p>Press p to restart the game</p>';
+
+    document.addEventListener('keyup', function(e){
+      if(e.keyCode == 80)
+        window.location.reload();
+    })
   }
 
   snake.unshift(newHead);
@@ -130,6 +148,7 @@ function draw(){
   ctx.fillStyle = "white";
   ctx.font = "45px Changa one";
   ctx.fillText(score,2*box,1.6*box);
+  ctx.fillText(highScore, 4*box, 1.6*box);
 }
 
 // call draw function every 100ms
