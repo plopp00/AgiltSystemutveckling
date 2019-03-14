@@ -1,0 +1,55 @@
+header{
+    color: Black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    font-family: Spirax;
+    margin: 0px;
+    padding-bottom: 0%;
+
+}
+#backgruond{
+    background: black;
+}
+h1 {
+    margin-bottom: 0px;
+}
+p {
+    font-family: 'Knewave', cursive;
+}
+section{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+text-align: center;
+    grid-gap: 10px;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    font-family: Spirax;
+    font-size: 30px;
+
+}
+
+nav a{
+    flex: 1;
+    padding: 20px;
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+ul {
+    margin: 20px;
+}
+li {
+    margin: 60px;
+    font-family: 'Knewave', cursive;
+}
+
+nav a:hover{
+    background-color: palevioletred;
+}

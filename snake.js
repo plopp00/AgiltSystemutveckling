@@ -25,6 +25,9 @@ right.src = "audio/right.mp3"
 left.src = "audio/left.mp3"
 down.src = "audio/down.mp3"
 
+let myMusic = new Audio();
+myMusic.src = "audio/back.mp3";
+
 // create the snake
 let snake = [];
 
@@ -66,6 +69,9 @@ function direction(event){
     down.play();
     d = "DOWN";
   }
+  else if (key==80) {
+      pause = !pause;
+  } // p
 }
 
 // check collision function
@@ -77,10 +83,10 @@ function collision(head,array){
   }
   return false;
 }
-
+var pause = false;
 // draw everything to the canvas
 function draw(){
-
+    myMusic.play();
   ctx.drawImage(ground,0,0);
 
   for(let i = 0; i < snake.length ; i++){
@@ -90,7 +96,11 @@ function draw(){
     ctx.strokeStyle = "red";
     ctx.strokeRect(snake[i].x,snake[i].y,box,box);
   }
+    if(pause){
+        ctx.fillText('PAUSED',7*box,11*box);
+        return;
 
+    }
   ctx.drawImage(foodImg, food.x, food.y);
 
   // old head position
@@ -135,10 +145,10 @@ function draw(){
   if(snakeX < box || snakeX > 17 * box || snakeY < 3*box || snakeY > 17*box || collision(newHead, snake)){
     clearInterval(game);
     dead.play();
-    document.getElementById('restart').innerHTML = '<p>Press p to restart the game</p>';
-
+    document.getElementById('restart').innerHTML = '<p>Press R to restart the game</p>';
+      myMusic.pause();
     document.addEventListener('keyup', function(e){
-      if(e.keyCode == 80)
+      if(e.keyCode == 82)
         window.location.reload();
     })
   }
