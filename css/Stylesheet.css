@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Knewave');
+*{
+    background-color: forestgreen;
+    padding: 0;
+    margin: 0;
+}
+.part1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr  ;
+    grid-template-rows: 1fr;
+    grid-template-areas: "header header";
+    padding:0;
+}
+#menustyle{
+    flex: 1;
+    padding: 20px;
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 30px;
+}
+#menustyle:hover {
+    background-color: palevioletred;
+}
+#header {
+    color: white;
+    font-family: 'Knewave', cursive;
+    font-size: 60px;
+    text-align: center;
+    grid-area: header;
+    margin: 0 auto;
+}
+.part2{
+
+}
+#howto{
+width: 800px;
+margin-left: 17%;
+}
+.part2 #howto h1{
+    text-align: center;
+    color: white;
+    font-family: 'Knewave', cursive;
+    font-size: 60px;
+}
+.part2 #howto p{
+    color: white;
+    font-family: 'Knewave', cursive;
+    text-align: center;
+}
+.part3{
+
+}
+#controls{
+    display: flex;
+    margin-left: 21%;
+    margin-top: 50px;
+    border: 2px solid white;
+    width: 700px;
+}
+.part3 #controls h1{
+    color: white;
+    font-family: 'Knewave', cursive;
+
+}
+.part3 #controls img{
+    margin-left: 10px;
+
+}
+.part4{
+
+}
+#powerups{
+
+}
+.part4 #powerups h1{
+    color:white;
+    font-family: 'Knewave', cursive;
+    text-align: center;
+}
+.part4 .powerup{
+    width: 80%;
+    height: 150px;
+    border:2px solid white;
+    margin-left: 10%;
+}
