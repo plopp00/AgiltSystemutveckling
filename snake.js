@@ -26,7 +26,7 @@ left.src = "audio/left.mp3"
 down.src = "audio/down.mp3"
 
 let myMusic = new Audio();
-myMusic.src = "audio/back.mp3";
+myMusic.src = "audio/bakgrund.mp3";
 
 // create the snake
 let snake = [];
@@ -72,6 +72,9 @@ function direction(event){
   else if (key==80) {
       pause = !pause;
   } // p
+  else if (key==77) {
+      mute = !mute;
+  } // p
 }
 
 // check collision function
@@ -85,23 +88,34 @@ function collision(head,array){
 }
 var pause = false;
 // draw everything to the canvas
+var mute = false;
 function draw(){
     myMusic.play();
   ctx.drawImage(ground,0,0);
 
   for(let i = 0; i < snake.length ; i++){
-    ctx.fillStyle = (i == 0)? "green" : "white"
+    ctx.fillStyle = (i == 0)? "red" : "#FF4D48"
     ctx.fillRect(snake[i].x,snake[i].y,box,box);
 
-    ctx.strokeStyle = "red";
+    ctx.strokeStyle = "black";
     ctx.strokeRect(snake[i].x,snake[i].y,box,box);
   }
     if(pause){
         ctx.fillText('PAUSED',7*box,11*box);
+        myMusic.pause();
         return;
+
 
     }
   ctx.drawImage(foodImg, food.x, food.y);
+
+    if(mute){
+        myMusic.pause();
+
+        ctx.fillStyle = "white";
+        ctx.fillText('MUTE',1*box,19*box);
+
+    }
 
   // old head position
   let snakeX = snake[0].x;
