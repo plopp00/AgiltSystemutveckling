@@ -6,10 +6,14 @@ const box = 32;
 
 // load images
 const ground = new Image();
-ground.src = "img/ground.png";
+ground.src = "img/sweden.png";
 
 const foodImg = new Image();
 foodImg.src = "img/food.png";
+
+const powerImg = new Image();
+powerImg.src = "img/power.png";
+
 
 // load audio files
 const dead = new Audio();
@@ -42,9 +46,14 @@ let food = {
   y : Math.floor(Math.random()*15+3) * box
 }
 
+let powerUp = {
+    x : Math.floor(Math.random()*17+1) * box,
+    y : Math.floor(Math.random()*15+3) * box
+}
 
 // create the score var
 let score = 0;
+var frameCount=0;
 
 // Score and HighScore
 let highScore = localStorage.getItem("highScore");
@@ -93,6 +102,8 @@ function draw(){
     myMusic.play();
   ctx.drawImage(ground,0,0);
 
+
+
   for(let i = 0; i < snake.length ; i++){
     ctx.fillStyle = (i == 0)? "red" : "#FF4D48"
     ctx.fillRect(snake[i].x,snake[i].y,box,box);
@@ -108,6 +119,7 @@ function draw(){
 
     }
   ctx.drawImage(foodImg, food.x, food.y);
+    ctx.drawImage(powerImg,powerUp.x,powerUp.y)
 
     if(mute){
         myMusic.pause();
@@ -148,6 +160,22 @@ function draw(){
     // remove the tail
     snake.pop();
   }
+/////////////////PowerUp
+    if (snakeX == powerUp.x && snakeY == powerUp.y){
+        score +=3;
+        s= 50;
+        powerUp = {
+            x : Math.floor(Math.random()*17+1) * box,
+            y : Math.floor(Math.random()*15+3) * box
+        }
+    }
+    frameCount++;
+    if(frameCount % 15 === 0)    {
+        powerUp = {
+            x : Math.floor(Math.random()*17+1) * box,
+            y : Math.floor(Math.random()*15+3) * box
+        }
+    }  //every 4 sec
 
   // add new Head
   let newHead = {
@@ -176,7 +204,8 @@ function draw(){
 }
 
 // call draw function every 100ms
-let game = setInterval(draw,100);
+let s = 100;
+let game = setInterval(draw,s);
 
 
 
