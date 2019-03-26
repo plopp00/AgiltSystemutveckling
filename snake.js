@@ -7,15 +7,14 @@ const box = 32;
 // load images
 const ground = new Image();
 ground.src = "img/sweden.png";
-
 const foodImg = new Image();
 foodImg.src = "img/food.png";
-
 const powerImg = new Image();
-powerImg.src = "img/power.png";
+powerImg.src = "img/power3.png";
 
 
 // load audio files
+const myMusic = new Audio();
 const dead = new Audio();
 const eat = new Audio();
 const up = new Audio();
@@ -28,38 +27,51 @@ up.src = "audio/up.mp3"
 right.src = "audio/right.mp3"
 left.src = "audio/left.mp3"
 down.src = "audio/down.mp3"
-
-let myMusic = new Audio();
 myMusic.src = "audio/bakgrund.mp3";
 
 // create the snake
 let snake = [];
 
+//position of the head and the two tales
 snake[0] = {
-  x : 9 * box,
+  x : 11 * box,
   y : 10 * box
+}
+snake[1] = {
+    x : 25 * box,
+    y : 10 * box
+}
+snake[2] = {
+    x : 25 * box,
+    y : 10 * box
 }
 
 // create the food
 let food = {
-  x : Math.floor(Math.random()*17+1) * box,
+  x : Math.floor(Math.random()*21+1) * box,
   y : Math.floor(Math.random()*15+3) * box
 }
-
+// Create Powerup
 let powerUp = {
-    x : Math.floor(Math.random()*17+1) * box,
+    x : Math.floor(Math.random()*21+1) * box,
     y : Math.floor(Math.random()*15+3) * box
 }
 
+
 // create the score var
 let score = 0;
+
 var frameCount=0;
+var pause = false;
+var mute = false;
+
+// control the snake var
+let d;
+
+
 
 // Score and HighScore
 let highScore = localStorage.getItem("highScore");
-
-// control the snake
-let d;
 
 document.addEventListener("keydown",direction);
 
@@ -83,25 +95,25 @@ function direction(event){
   } // p
   else if (key==77) {
       mute = !mute;
-  } // p
+  } // m
 }
 
 // check collision function
 function collision(head,array){
-  for(let i = 0; i < array.length; i++){
+  for(let i = 2; i < array.length; i++){
     if(head.x == array[i].x && head.y == array[i].y){
       return true;
     }
   }
   return false;
 }
-var pause = false;
+
+
+
 // draw everything to the canvas
-var mute = false;
 function draw(){
     myMusic.play();
   ctx.drawImage(ground,0,0);
-
 
 
   for(let i = 0; i < snake.length ; i++){
@@ -112,22 +124,20 @@ function draw(){
     ctx.strokeRect(snake[i].x,snake[i].y,box,box);
   }
     if(pause){
-        ctx.fillText('PAUSED',7*box,11*box);
+        ctx.fillStyle = "white";
+        ctx.fillText('PAUSED',1*box,19*box);
         myMusic.pause();
         return;
-
-
     }
-  ctx.drawImage(foodImg, food.x, food.y);
-    ctx.drawImage(powerImg,powerUp.x,powerUp.y)
-
     if(mute){
         myMusic.pause();
 
         ctx.fillStyle = "white";
         ctx.fillText('MUTE',1*box,19*box);
-
     }
+    ctx.drawImage(foodImg, food.x, food.y);
+    ctx.drawImage(powerImg,powerUp.x,powerUp.y)
+
 
   // old head position
   let snakeX = snake[0].x;
@@ -156,38 +166,56 @@ function draw(){
       y : Math.floor(Math.random()*15+3) * box
     }
     // we don't remove the tail
-  }else {
-    // remove the tail
-    snake.pop();
   }
-/////////////////PowerUp
-    if (snakeX == powerUp.x && snakeY == powerUp.y){
-        score +=3;
-        s= 50;
-        powerUp = {
-            x : Math.floor(Math.random()*17+1) * box,
-            y : Math.floor(Math.random()*15+3) * box
-        }
-    }
+  else if (snakeX == powerUp.x && snakeY == powerUp.y){
+      score +=3;
+      eat.play();
+      powerUp = {
+          x : Math.floor(Math.random()*17+1) * box,
+          y : Math.floor(Math.random()*15+3) * box
+      }
+
+  }
+  else {
+      // remove the tail
+      snake.pop();
+  }
+
+     //  Changes the powerup place and takes it away
     frameCount++;
     if(frameCount % 15 === 0)    {
         powerUp = {
-            x : Math.floor(Math.random()*17+1) * box,
-            y : Math.floor(Math.random()*15+3) * box
+            x:20*box,
+            y : 20 *box
         }
-    }  //every 4 sec
+        if(frameCount % 25 === 0) {
+            powerUp = {
+                x: Math.floor(Math.random() * 17 + 1) * box,
+                y: Math.floor(Math.random() * 15 + 3) * box
+            }
+        }
+    }
 
-  // add new Head
-  let newHead = {
-    x : snakeX,
-    y : snakeY
-  }
+    // add new Head
+    let newHead = {
+        x : snakeX,
+        y : snakeY
+    }
+
+
+
 
   // game over
-  if(snakeX < box || snakeX > 17 * box || snakeY < 3*box || snakeY > 17*box || collision(newHead, snake)){
+  if(snakeX < box || snakeX > 21 * box || snakeY < 3*box || snakeY > 17*box || collision(newHead, snake)){
+
     clearInterval(game);
     dead.play();
-    document.getElementById('restart').innerHTML = '<p>Press R to restart the game</p>';
+      ctx.fillStyle = "white";
+      ctx.fillText('Press R to Restart',1*box,19*box);
+      ctx.font = "70px Changa one";
+      ctx.fillStyle = "black";
+      ctx.fillText('GAME OVER',5*box,11*box);
+   // document.getElementById('restart').innerHTML = '<p>Press R to restart the game</p>';
       myMusic.pause();
     document.addEventListener('keyup', function(e){
       if(e.keyCode == 82)
@@ -204,12 +232,5 @@ function draw(){
 }
 
 // call draw function every 100ms
-let s = 100;
-let game = setInterval(draw,s);
+let game = setInterval(draw,100);
 
-
-
-/*
-Create by Learn Web Developement
-Youtube channel : https://www.youtube.com/channel/UC8n8ftV94ZU_DJLOLtrpORA
-*/
