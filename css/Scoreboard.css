@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Knewave');
+*{
+    background-color: forestgreen;
+    padding: 0;
+    margin: 0;
+}
+.part1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr  ;
+    grid-template-rows: 1fr;
+    grid-template-areas: "header header";
+    padding:0;
+}
+#menystyle{
+    flex: 1;
+    padding: 20px;
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 30px;
+}
+#menystyle:hover {
+    background-color: palevioletred;
+}
+#header {
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    grid-area: header;
+    margin: 0 auto;
+    font-family:'Knewave', cursive;
+}
+#scoreboard{
+    height: 500px;
+    width: 800px;
+    border: 2px solid white;
+    margin-left: 230px;
+}
+.point{
+    height:100px;
+    width:800px;
+    border: 2px solid white;
+
+}
