@@ -46,10 +46,34 @@ snake[2] = {
     y : 10 * box
 }
 
+var loop= true;
+var loop2= true;
+var randomx2;
+var randomy2;
+
+while (loop){
+    var randomx= Math.floor(Math.random()*21+1);
+if  (randomx!==1&& randomx!==2 && randomx!==3 && randomx!==4 && randomx!==5 && randomx!==6 &&randomx!==7){
+    randomx2=randomx;
+    loop= false;
+}
+}
+while (loop2){
+    var randomy= Math.floor(Math.random()*15+3);
+    if  (randomy!==1&& randomy!==2 && randomy!==3 && randomy!==4 && randomy!==5 && randomy!==6 &&randomy!==7){
+        randomy2=randomy;
+        loop2= false;
+    }
+}
+
+
+
+
 // create the food
 let food = {
-  x : Math.floor(Math.random()*21+1) * box,
-  y : Math.floor(Math.random()*15+3) * box
+
+    x : randomx2* box,
+    y : randomy2 * box
 }
 // Create Powerup
 let powerUp = {
@@ -181,6 +205,7 @@ function draw(){
       snake.pop();
   }
 
+
      //  Changes the powerup place and takes it away
     frameCount++;
     if(frameCount % 15 === 0)    {
@@ -233,4 +258,5 @@ function draw(){
 
 // call draw function every 100ms
 let game = setInterval(draw,100);
+
 
